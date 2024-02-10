@@ -1,2 +1,2 @@
 # Sudoku
-Creating a Sudoku Solver
+Creating a Sudoku Solver tool.
