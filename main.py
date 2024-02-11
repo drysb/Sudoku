@@ -29,16 +29,19 @@ def find_zero(board):
 def is_valid(board, row, col, value):
   grid_row = (row // 3) + 1
   grid_column = (col // 3) + 1
+  
   #Check for number in same row
   for num in board[row]:
     if num == value:
       print(f"False")
       return False
+  
   #Check for number in same column
   for row in board:
     if row[col] == value:
       print(f"False")
       return False
+  
   #Check 3x3 grid
   for row_index, row1 in enumerate(board):
     if ((row_index // 3) + 1) != grid_row:
@@ -52,4 +55,29 @@ def is_valid(board, row, col, value):
   print(f"True")
   return True
 
+def solve(board):
+  #Base Case: There are no more 0s
+    check = find_zero(board)
+    if check is None:
+        print("It is solved! Your solution is:")
+        print_board(board)
+        return True
+    else:
+        row, col = check
+    
+  #There is a 0
+    for i in range(1,10):
+        if is_valid(board,row, col, i):
+            #Assigns number to board position
+            board[row][col] = i
+            
+            if solve(board):
+              return True
 
+            board[row][col] = 0
+            
+    return False      
+        
+solve(board)
+
+    
