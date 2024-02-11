@@ -33,13 +33,11 @@ def is_valid(board, row, col, value):
   #Check for number in same row
   for num in board[row]:
     if num == value:
-      print(f"False")
       return False
   
   #Check for number in same column
   for row in board:
     if row[col] == value:
-      print(f"False")
       return False
   
   #Check 3x3 grid
@@ -50,9 +48,7 @@ def is_valid(board, row, col, value):
       if ((col_index // 3) + 1) != grid_column:
         continue
       if num == value:
-        print(f"False")
         return False
-  print(f"True")
   return True
 
 def solve(board):
@@ -79,5 +75,3 @@ def solve(board):
     return False      
         
 solve(board)
-
-    
