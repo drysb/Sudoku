@@ -62,16 +62,18 @@ def solve(board):
         row, col = check
     
   #There is a 0
+    #Go through each number to see if it is valid
     for i in range(1,10):
         if is_valid(board,row, col, i):
             #Assigns number to board position
             board[row][col] = i
-            
+            #Run the solve function again with new value
             if solve(board):
               return True
-
+            #Recursion hit a wall, set previous value back to 0 and try next number in for loop
             board[row][col] = 0
-            
+    #If it goes outside the for loop, this means every number for the first 0 has been backtested
+    print("There is no solution")      
     return False      
         
 solve(board)
