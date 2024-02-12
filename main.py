@@ -11,11 +11,21 @@ board = [[5, 3, 0, 0, 7, 0, 0, 0, 0],
 
 #Print Current Board
 def print_board(board):
-  for row in board:
-    print_row = ""
-    for num in row:
-      print_row += (str(num) + " ")
-    print(print_row)
+    print("-------------------------")
+    for row in board:
+        print_row = "| "
+        for num in row:
+            print_row += (str(num) + " ")
+            #Finds where to put vertical lines
+            if (row.index(num) + 1) % 3 == 0:
+               print_row += "| "
+        #Finds where to put horizontal lines
+        if (board.index(row) + 1) % 3 == 0 and board.index(row) != 8:
+               print_row += "\n-------------------------"
+        print(print_row)
+    print("-------------------------")
+
+print_board(board)
 
 #Find Empty Cell (Marked as 0)
 def find_zero(board):
@@ -56,6 +66,7 @@ def solve(board):
     check = find_zero(board)
     if check is None:
         print("It is solved! Your solution is:")
+        print("")
         print_board(board)
         return True
     else:
@@ -71,9 +82,8 @@ def solve(board):
             if solve(board):
               return True
             #Recursion hit a wall, set previous value back to 0 and try next number in for loop
-            board[row][col] = 0
-    #If it goes outside the for loop, this means every number for the first 0 has been backtested
-    print("There is no solution")      
+            board[row][col] = 0    
     return False      
-        
+
 solve(board)
+print_board(board)
